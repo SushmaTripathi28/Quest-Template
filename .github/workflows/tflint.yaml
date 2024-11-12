@@ -20,5 +20,5 @@ jobs:
          
      - name: Run tflint
        run: |
-        cd templatesProjectIAMBinding
+        cd ./templatesProjectIAMBinding
         tflint --var-file=terraform.tfvars 
