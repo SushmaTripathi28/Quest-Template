@@ -54,6 +54,7 @@ jobs:
       - name: Terraform Validate
         run: |
          cd templatesProjectIAMBinding
+         terraform init
          terraform validate
 
   tflint:
