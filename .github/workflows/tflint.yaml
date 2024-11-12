@@ -20,5 +20,5 @@ jobs:
          
      - name: Run tflint
        run: |
-        cd Org_Template/terraform-google-cloud-folder
-        tflint --var-file=folder.tfvars 
+        cd templatesProjectIAMBinding
+        tflint --var-file=terraform.tfvars 
