@@ -3,4 +3,5 @@ variable "project_id" {
 }
 variable "project_iam_binding" {
   sensitive = false
+type = map(string)
 }
