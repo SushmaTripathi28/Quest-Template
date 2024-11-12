@@ -29,7 +29,7 @@ jobs:
      # Terraform Init
     - name: Terraform Init
       run: |
-        cd templatesProjectIAMBinding
+        cd ./templatesProjectIAMBinding
         terraform init
 
   validate: 
@@ -50,7 +50,7 @@ jobs:
      #Terraform Validate
       - name: Terraform Validate
         run: |
-         cd templatesProjectIAMBinding
+         cd ./templatesProjectIAMBinding
          terraform init
          terraform validate
 
@@ -77,7 +77,7 @@ jobs:
     # Terraform Plan
       - name: Terraform Plan
         run: |
-          cd templatesProjectIAMBinding
+          cd ./templatesProjectIAMBinding
           terraform init -reconfigure
           terraform plan --var-file=folder.tfvars
 
