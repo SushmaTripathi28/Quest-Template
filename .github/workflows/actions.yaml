@@ -1,0 +1,105 @@
+name: cicd
+
+on:
+  push: 
+    branches: [ "" ]
+
+  workflow_dispatch:
+  pull_request:
+
+permissions:
+  contents: read
+  id-token: 'write'
+
+jobs:
+  init:
+    runs-on: ubuntu-latest
+
+    steps:
+    # checkout repository to github action runner
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - id: auth
+      uses: google-github-actions/auth@v2.0.0
+      with:
+        workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
+        service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+
+     # Terraform Init
+    - name: Terraform Init
+      run: |
+        cd Org_Template/terraform-google-cloud-folder
+        terraform init
+
+  validate: 
+     runs-on: ubuntu-latest
+     needs: init
+
+     steps:
+    # checkout repository to github action runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: auth
+        uses: google-github-actions/auth@v2.0.0
+        with:
+          workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
+          service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+     
+     #Terraform Validate
+      - name: Terraform Validate
+        run: |
+         cd Org_Template/terraform-google-cloud-folder
+         terraform init
+         terraform validate
+
+  tflint:
+    needs: validate
+    uses: ./.github/workflows/lint.yml
+      
+
+  plan: 
+     runs-on: ubuntu-latest
+     needs: tflint
+
+     steps:
+    # checkout repository to github action runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: auth
+        uses: google-github-actions/auth@v2.0.0
+        with:
+          workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
+          service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+
+    # Terraform Plan
+      - name: Terraform Plan
+        run: |
+          cd Org_Template/terraform-google-cloud-folder
+          terraform init -reconfigure
+          terraform plan --var-file=folder.tfvars
+
+  apply: 
+     runs-on: ubuntu-latest
+     needs: plan
+
+     steps:
+    # checkout repository to github action runner
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - id: auth
+        uses: google-github-actions/auth@v2.0.0
+        with:
+          workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
+          service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+
+
+      # Terraform Apply
+      - name: Terraform Apply
+        if: |
+          github.ref == 'refs/heads/main'
+        run: |
+          terraform apply -auto-approve -input=false
