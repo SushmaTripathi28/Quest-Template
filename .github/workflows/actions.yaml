@@ -23,8 +23,8 @@ jobs:
     - id: auth
       uses: google-github-actions/auth@v2.0.0
       with:
-        workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
-        service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+        workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+        service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
 
      # Terraform Init
     - name: Terraform Init
@@ -44,8 +44,8 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2.0.0
         with:
-          workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
-          service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+          service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
      
      #Terraform Validate
       - name: Terraform Validate
@@ -71,8 +71,8 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2.0.0
         with:
-          workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
-          service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+          service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
 
     # Terraform Plan
       - name: Terraform Plan
@@ -93,8 +93,8 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2.0.0
         with:
-          workload_identity_provider: 'projects/908852839842/locations/global/workloadIdentityPools/iac-wli-pool1/providers/github'
-          service_account: 'inf-sa@seed-440521.iam.gserviceaccount.com'
+          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+          service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
 
 
       # Terraform Apply
