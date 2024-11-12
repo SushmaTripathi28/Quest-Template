@@ -23,7 +23,7 @@ jobs:
     - id: auth
       uses: google-github-actions/auth@v2.0.0
       with:
-        workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+        workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/githubprovider'
         service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
 
      # Terraform Init
@@ -44,7 +44,7 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2.0.0
         with:
-          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/githubprovider'
           service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
      
      #Terraform Validate
@@ -71,7 +71,7 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2.0.0
         with:
-          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/githubprovider'
           service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
 
     # Terraform Plan
@@ -93,7 +93,7 @@ jobs:
       - id: auth
         uses: google-github-actions/auth@v2.0.0
         with:
-          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/github'
+          workload_identity_provider: 'projects/82620805336/locations/global/workloadIdentityPools/my-pool-st/providers/githubprovider'
           service_account: 'secretssa@kd-project-437712.iam.gserviceaccount.com'
 
 
