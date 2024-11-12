@@ -33,7 +33,7 @@ jobs:
     # Terraform Init
     - name: Terraform Init
       run: |
-        cd ./templatesProjectIAMBinding
+        cd templatesProjectIAMBinding
         terraform init
 
   validate: 
