@@ -1,7 +1,7 @@
 name: 'Terraform Destroy'
 
-on:
-  workflow_dispatch:
+#on:
+ # workflow_dispatch:
     inputs:
       target_dir:
         description: 'Specify the subdirectory to destroy resources from (e.g.,compute , bucket, gke, database)'
